@@ -39,7 +39,7 @@ The Requirements
 At Gridstone, we make use of [Square's code styles](https://github.com/square/java-code-styles) for our Java and XML. Your repository must adhere to those styles, so run the install script from the aforementioned link and make sure you're using it to format your code in Android Studio.
 
 ###General Android-y Stuff
-* Your app must run on Android 4.1 Jelly Bean and up. (That's API level 16).
+* Your app must run on Android 5.0 Lollipop and up. (That's API level 21).
 * All network requests must execute off the main UI thread.
 * The list must be displayed using a [`RecyclerView`](http://developer.android.com/training/material/lists-cards.html).
 * The app must work in both portrait and landscape orientations
