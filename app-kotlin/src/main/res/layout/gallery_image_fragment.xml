@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
   <ImageView
-      android:id="@+id/list_image"
-      android:layout_height="200dp"
+      android:id="@+id/gallery_image_fragment_image"
       android:layout_width="match_parent"
+      android:layout_height="match_parent"
       android:scaleType="centerCrop"
       tools:src="@drawable/testimage"
-  />
+      />
 
   <TextView
-      android:id="@+id/list_title"
+      android:id="@+id/gallery_image_fragment_details"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="bottom"
@@ -25,7 +25,7 @@
       android:paddingLeft="20dp"
       android:paddingTop="10dp"
       android:paddingBottom="10dp"
-      tools:text="Test text here"
+      tools:text="Test text here/nTTT/nTTT"
 
       />
 </FrameLayout>
