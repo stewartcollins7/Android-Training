@@ -11,10 +11,13 @@ import au.com.gridstone.training_kotlin.RecyclerAdapter.OnImageItemSelected
 
 
 class MainActivity : AppCompatActivity(), OnImageItemSelected, OnListLoaded {
-  override fun OnListLoaded() {
+  lateinit var imageDetails: List<ImageDetails>
+
+  override fun onListLoaded(imageDetails: List<ImageDetails>) {
+    this.imageDetails = imageDetails
     getSupportFragmentManager()
         .beginTransaction()
-        .replace(R.id.main_layout, GalleryListFragment.newInstance(), LIST_FRAGMENT_ID)
+        .replace(R.id.main_layout, GalleryListFragment.newInstance(imageDetails), LIST_FRAGMENT_ID)
         .commit()
   }
 
@@ -22,11 +25,11 @@ class MainActivity : AppCompatActivity(), OnImageItemSelected, OnListLoaded {
   val LIST_FRAGMENT_ID: String = "galleryListFragment"
   val LOADING_FRAGMENT_ID: String = "loadingFragment"
 
-  override fun onImageItemSelected(url: String) {
+  override fun onImageItemSelected(details: ImageDetails) {
     Log.v("MY_TRAINING_APP","Adding fragment")
     getSupportFragmentManager()
         .beginTransaction()
-        .replace(R.id.main_layout, GalleryImageFragment.newInstance(), DETAILS_FRAGMENT_ID)
+        .replace(R.id.main_layout, GalleryImageFragment.newInstance(details), DETAILS_FRAGMENT_ID)
         .addToBackStack(null)
         .commit()
     Log.v("MY_TRAINING_APP","Fragment added")

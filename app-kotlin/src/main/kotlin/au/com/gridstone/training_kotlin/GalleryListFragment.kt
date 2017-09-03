@@ -22,15 +22,23 @@ class GalleryListFragment: Fragment() {
 
 
   companion object {
-    fun newInstance(): GalleryListFragment{
-      return GalleryListFragment()
+    fun newInstance(list: List<ImageDetails>): GalleryListFragment{
+      val args: Bundle = Bundle()
+      var listArray = Array<ImageDetails>(list.size,{i->list[i]})
+      args.putParcelableArray("listArray", listArray)
+
+      val fragment = GalleryListFragment()
+      fragment.arguments = args
+      return fragment
     }
   }
 
   override fun onAttach(context: Context?) {
     super.onAttach(context)
     if(context is OnImageItemSelected){
-      listAdapter = RecyclerAdapter(context)
+      val args: Bundle = arguments
+      var imageDetails: Array<ImageDetails> = args.getParcelableArray("listArray") as Array<ImageDetails>
+      listAdapter = RecyclerAdapter(context, imageDetails)
 
     }else{
       Log.v("MY_TRAINING_APP","Calling activity my implement OnImageItemSelected")

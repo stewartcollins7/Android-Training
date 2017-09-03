@@ -1,21 +1,19 @@
 package au.com.gridstone.training_kotlin
 
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import au.com.gridstone.training_kotlin.RecyclerAdapter.ListImageHolder
-import java.io.Console
 import android.util.Log
+import com.squareup.picasso.Picasso
 
 /**
  * Created by Stewart Collins on 30/08/17.
  */
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ListImageHolder>() {
+class RecyclerAdapter(val itemListener: OnImageItemSelected, val imageDetails: Array<ImageDetails>) : RecyclerView.Adapter<RecyclerAdapter.ListImageHolder>() {
 
   class ListImageHolder(parent: View) : RecyclerView.ViewHolder(parent) {
     var itemImage : ImageView
@@ -38,14 +36,21 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ListImageHolder>() 
   }
 
   override fun onBindViewHolder(holder: RecyclerAdapter.ListImageHolder?, position: Int) {
-    if(holder != null){
-      holder.itemTitle.setText(position.toString())
-      //holder.itemImage.setImageResource()
+    if(holder != null) {
+      holder.itemTitle.setText(imageDetails[position].title)
+      Picasso.with(holder.itemView.context).load(imageDetails[position].link).into(holder.itemImage)
+      holder.itemView.setOnClickListener() { v ->
+        itemListener.onImageItemSelected(imageDetails[position])
+      }
     }
   }
 
   override fun getItemCount(): Int {
-    return 20;
+    return imageDetails.size;
+  }
+
+  interface OnImageItemSelected{
+    fun onImageItemSelected(details: ImageDetails)
   }
 
 }
