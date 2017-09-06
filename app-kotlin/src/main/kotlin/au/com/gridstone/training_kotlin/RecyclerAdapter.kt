@@ -30,7 +30,7 @@ class RecyclerAdapter(val itemListener: OnImageItemSelected, val imageDetails: A
       val inflatedView : View = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_image_list_item, parent, false)
       return ListImageHolder(inflatedView)
     }else{
-      Log.v("MY_TRAINING_APP","Null list item ViewGroup")
+      Log.v(MainActivity.LOG_TAG,"Null list item ViewGroup")
       throw NullPointerException()
     }
   }
@@ -38,8 +38,10 @@ class RecyclerAdapter(val itemListener: OnImageItemSelected, val imageDetails: A
   override fun onBindViewHolder(holder: RecyclerAdapter.ListImageHolder?, position: Int) {
     if(holder != null) {
       holder.itemTitle.setText(imageDetails[position].title)
-      Picasso.with(holder.itemView.context).load(imageDetails[position].link).into(holder.itemImage)
-      holder.itemView.setOnClickListener() { v ->
+      Picasso.with(holder.itemView.context)
+          .load(imageDetails[position].link)
+          .into(holder.itemImage)
+      holder.itemView.setOnClickListener() {
         itemListener.onImageItemSelected(imageDetails[position])
       }
     }

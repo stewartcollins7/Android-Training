@@ -19,13 +19,14 @@ class GalleryListFragment: Fragment() {
   lateinit var recyclerView: RecyclerView
   lateinit var listAdapter: RecyclerAdapter
   lateinit var layoutManager: LinearLayoutManager
+  lateinit var itemSelectedListener: OnImageItemSelected
 
 
   companion object {
     fun newInstance(list: List<ImageDetails>): GalleryListFragment{
       val args: Bundle = Bundle()
       var listArray = Array<ImageDetails>(list.size,{i->list[i]})
-      args.putParcelableArray("listArray", listArray)
+      args.putParcelableArray(MainActivity.PARECELABLE_TAG, listArray)
 
       val fragment = GalleryListFragment()
       fragment.arguments = args
@@ -36,37 +37,34 @@ class GalleryListFragment: Fragment() {
   override fun onAttach(context: Context?) {
     super.onAttach(context)
     if(context is OnImageItemSelected){
-      val args: Bundle = arguments
-      var imageDetails: Array<ImageDetails> = args.getParcelableArray("listArray") as Array<ImageDetails>
-      listAdapter = RecyclerAdapter(context, imageDetails)
-
+      itemSelectedListener = context
     }else{
-      Log.v("MY_TRAINING_APP","Calling activity my implement OnImageItemSelected")
+      Log.e(MainActivity.LOG_TAG,"Calling activity must implement OnImageItemSelected")
     }
-
   }
+
   override fun onCreateView(inflater: LayoutInflater?, @Nullable container: ViewGroup?,
       @Nullable savedInstanceState: Bundle?): View? {
-
     super.onCreateView(inflater, container, savedInstanceState)
 
     if(inflater == null){
       return null
     }
-
     val view: View? = inflater.inflate(R.layout.gallery_list_fragment, container, false)
-
     if(view == null){
       return view
     }
 
+    val args: Bundle = arguments
+    var imageDetails: Array<ImageDetails> =
+        args.getParcelableArray(MainActivity.PARECELABLE_TAG) as Array<ImageDetails>
+
+    listAdapter = RecyclerAdapter(itemSelectedListener, imageDetails)
     layoutManager = LinearLayoutManager(context)
     recyclerView = view.findViewById(R.id.recycler_view) as RecyclerView
-    recyclerView.layoutManager = layoutManager;
+    recyclerView.layoutManager = layoutManager
     recyclerView.adapter = listAdapter
 
     return view
-
-
   }
 }

@@ -5,27 +5,91 @@
     android:fillViewport="true"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
   <ImageView
       android:id="@+id/gallery_image_fragment_image"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:scaleType="centerCrop"
-      tools:src="@drawable/testimage"
       />
-
-  <TextView
-      android:id="@+id/gallery_image_fragment_details"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_gravity="bottom"
-      android:background="@color/colorPrimaryDark"
-      android:textColor="@color/colorAccent"
-      android:textSize="16dp"
-      android:paddingLeft="20dp"
-      android:paddingTop="10dp"
-      android:paddingBottom="10dp"
-      tools:text="Test text here/nTTT/nTTT"
+      android:background="@color/transparentBlack"
+      android:orientation="vertical"
+      >
+    <TextView
+        android:id="@+id/gallery_image_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="bottom"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:text="My Test Title"
 
-      />
+        />
+    <TextView
+        android:id="@+id/gallery_image_time_elapsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="16dp"
+        android:layout_gravity="bottom"
+        android:paddingLeft="20dp"
+        tools:text="16 hours ago"
+        />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        >
+      <TextView
+          android:textColor="@color/colorTextWhite"
+          android:text="@string/width_tag"
+          android:paddingLeft="20dp"
+          android:paddingTop="10dp"
+          android:textStyle="bold"
+          />
+      <TextView
+          android:textColor="@color/colorTextWhite"
+          android:id="@+id/gallery_image_width"
+          tools:text="200px"
+          android:paddingLeft="20dp"
+          />
+      <TextView
+          android:textColor="@color/colorTextWhite"
+          android:paddingTop="10dp"
+          android:text="@string/height_tag"
+          android:paddingLeft="20dp"
+          android:textStyle="bold"
+          />
+      <TextView
+          android:textColor="@color/colorTextWhite"
+          tools:text="200px"
+          android:id="@+id/gallery_image_height"
+          android:paddingLeft="20dp"
+          />
+      <TextView
+          android:paddingTop="10dp"
+          android:paddingBottom="20dp"
+          android:textColor="@color/colorTextWhite"
+          android:text="@string/viewcount_tag"
+          android:paddingLeft="20dp"
+          android:textStyle="bold"
+          />
+      <TextView
+          android:textColor="@color/colorTextWhite"
+          tools:text="130031"
+          android:id="@+id/gallery_image_viewcount"
+          android:paddingLeft="20dp"
+          />
+    </GridLayout>
+  </LinearLayout>
+
+
+
 </FrameLayout>

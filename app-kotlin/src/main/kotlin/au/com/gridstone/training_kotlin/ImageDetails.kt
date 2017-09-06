@@ -6,10 +6,10 @@ package au.com.gridstone.training_kotlin
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+
+data class ImgurGalleryResponse(val data: List<ImageDetails>)
 
 data class ImageDetails(
-
     val title: String,
     val datetime: Int,
     val width: Int,
@@ -17,7 +17,6 @@ data class ImageDetails(
     val views: Int,
     val link: String,
     val is_album: Boolean
-
 ) : Parcelable {
   constructor(source: Parcel) : this(
       source.readString(),
@@ -48,5 +47,3 @@ data class ImageDetails(
     }
   }
 }
-
-data class ImgurGalleryResponse(val data: List<ImageDetails>)
